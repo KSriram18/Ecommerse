@@ -1,0 +1,33 @@
+.categories-view {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.categories-view .card {
+    /* width: 300px; */
+    background-color: #DBEEE3;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.cat {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+}
+
+.newCat {
+    display: flex;
+    justify-content: center;
+    flex: 3;
+}
+
+.product-image {
+    width: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+}

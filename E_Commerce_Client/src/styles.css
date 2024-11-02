@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #F7F5F7;
+    /* height: 100vh; */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.p-component {
+    font-family: unset;
+}
+
+.p-breadcrumb {
+    background: none;
+    border: unset;
+}
+
+.customBtn {
+    border-radius: 20px;
+    padding: 12px 45px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+.p-dropdown {
+    width: 14rem;
+    font-weight: normal;
+}
+
+/* .p-button.p-button-icon-only {
+    width: unset;
+    padding: 0.75rem 1.25rem;
+} */

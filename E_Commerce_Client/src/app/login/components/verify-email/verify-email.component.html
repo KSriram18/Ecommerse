@@ -1,0 +1,24 @@
+<app-breadcrumb [items]="menuItems"></app-breadcrumb>
+<p-toast></p-toast>
+<div class="container p-4 mt-1">
+    <div class="row">
+        <h5 class="display-5 form-heading" style="font-family: 'Pacifico',cursive;">Verify Email</h5>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="form-group">
+            <label for="email" class="pb-1">Email:</label>
+            <input type="text" formControlName="email" class="form-control" id="email">
+            <div class="text-danger" *ngIf="g().email.invalid && (g().email.dirty || g().email.touched)">
+                <p *ngIf="g().email.errors?.['required']" class="mb-1">Email is required</p>
+                <p *ngIf="g().email.errors?.['email']" class="mb-1">Please enter correct email format</p>
+            </div>
+        </div>
+        <div class="button d-flex" style="justify-content: center;">
+            <button type="submit" class="btn btn-primary mt-2 customBtn"
+                [disabled]="loginForm.invalid || disableSubmit">Verify Email</button>
+        </div>
+    </form>
+                
+    <!-- <div *ngIf="showSuccessMessage" class="text-success">Login Success :)</div>
+    <div *ngIf="showErrorMessage" class="text-danger">Username or Password is incorrect!</div> -->
+</div>

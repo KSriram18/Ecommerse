@@ -1,0 +1,83 @@
+<app-breadcrumb [items]="menuItems"></app-breadcrumb>
+<div *ngFor="let data of productsData;let i=index" class="container">
+    <div id="card" [ngClass]="classObj">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="card-img m-3" height="250vh" src="{{data.thumbnail}}" alt="{{data.title}}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <div>
+                        <table>
+                            <tbody>
+                                <tr class="justify-content-between">
+                                    <th colspan="2">
+                                        <h5>Product Details</h5>
+                                    </th>
+                                    <td style="text-align: right">
+                                        <i class="pi pi-tag product-category-icon"></i>
+                                        <span class="product-category text-capitalize">{{data.category}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Title</th>
+                                    <td>:</td>
+                                    <td>{{data.title | titlecase}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Brand</th>
+                                    <td>:</td>
+                                    <td>{{data.brand | titlecase}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>:</td>
+                                    <td>{{data.description}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Price</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span class="fw-bold me-2">{{data.price*(1-(data.discountPercentage/100))
+                                            |
+                                            currency}}</span>
+                                        <span class="text-muted text-decoration-line-through">{{data.price |
+                                            currency}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Quantity</th>
+                                    <td>:</td>
+                                    <td><input #val type="number" [min]="0" [max]="data.stock"
+                                            (input)="updateQuantity(i,val.value,data.stock)" [value]="data.quantity">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <button type="button" (click)="removeFromCart(data.id)" id="removeFromCart"
+                            class="btn btn-danger mt-4">
+                            Remove from
+                            Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="nocart" *ngIf="errorMessage">
+    <h3>{{errorMessage}}</h3>
+</div>
+<!-- <div class="d-flex mt-2">
+    <div class="container text-center justify-content-end">
+
+    </div>
+</div> -->
+<div class="d-flex justify-content-center gap-2 checkout" *ngIf="productsData.length>0">
+    <p-toast></p-toast>
+    <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+    <p-button styleClass="p-button-raised" (click)="confirm()" label="Proceed To Checkout"
+        [disabled]="disabled"></p-button>
+</div>

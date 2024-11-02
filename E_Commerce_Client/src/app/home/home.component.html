@@ -1,0 +1,49 @@
+<app-breadcrumb [items]="items"></app-breadcrumb>
+<div class="carousel-card-container d-flex justify-content-center">
+    <div class="card p-2 carousel-card text-center">
+        <p-carousel [value]="products" [numVisible]="3" [numScroll]="1" [responsiveOptions]="responsiveOptions"
+            [circular]="true" [autoplayInterval]="2500">
+            <ng-template pTemplate="header">
+                <p class="lead text-center mb-1">Today Deal's 🎉</p>
+            </ng-template>
+            <ng-template let-product pTemplate="item">
+                <div class="product-item">
+                    <div class="product-item-content">
+                        <div class="mb-3" (click)="goToSpecificProduct(product.id)">
+                            <img src="{{product.thumbnail}}" [alt]="product.title" class="product-image " width="400px"
+                                height="150px" [title]="product.title" style="cursor: pointer;" />
+                        </div>
+                        <div>
+                            <h6 class="mb-1" title="{{product.title}}">{{ product.title }}</h6>
+                            <span
+                                class="fw-bold me-2">{{product.price*(1-(product.discountPercentage/100))|currency}}</span>
+                            <span class="text-muted text-decoration-line-through">{{product.price |currency}}</span><br>
+                            <p-tag [value]="product.stock>50?'In Stock':'Low Stock'"
+                                [severity]="getSeverity(product.stock)"></p-tag><span
+                                class="text-muted ms-2">{{product.stock}}<sup>*</sup></span><br>
+                            <a role="button" class="btn btn-sm btn btn-outline-secondary mt-2"
+                                (click)="addToCart(product)">Add
+                                To Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+</div>
+<section id="categories">
+<h6 class="display-5">
+    Categories
+</h6>
+
+<div *ngIf="categoriesLoaded" class="container-fluid categories-view mt-2">
+    <div class="card text-center" style="width: 13rem;" *ngFor="let d of categories">
+        <img src="../../assets/Icons/{{d.pngIcon}}" class="card-img-top img-fluid h-50 w-100" alt="{{d._id}}"
+            title="{{d._id}}">
+        <div class="card-body pt-4 pb-0 ps-0 pe-0">
+            <h5 class="card-title text-capitalize" title="{{d._id}}">{{d._id}}</h5>
+            <a routerLink="products/category/{{d._id}}" class="btn btn-light shadow">View Products</a>
+        </div>
+    </div>
+</div>
+</section>

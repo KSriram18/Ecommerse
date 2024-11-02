@@ -1,0 +1,28 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true
+    },
+    "extends": "airbnb-base",
+    "overrides": [],
+    "parserOptions": {
+        "ecmaVersion": 8
+    },
+    "rules": {
+        "no-unused-vars": [
+            "off",
+            {
+                "argsIgnorePattern": "req|res|next|val"
+            }
+        ],
+        "consistent-return": "off",
+        "no-console": "off",
+        "no-else-return": "off",
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": "off",
+        "no-param-reassign": "off"
+    }
+}

@@ -1,0 +1,68 @@
+<app-breadcrumb [items]="menuItems"></app-breadcrumb>
+<p-toast></p-toast>
+<div class="container-fluid d-flex justify-content-between flex-row border-top mb-2">
+    <div style="display: flex;flex-direction: column; ">
+        <h1 style="text-align: center;">Checkout</h1>
+        <form>
+            <div style="display: flex; flex-direction: column;">
+                <label style="margin-bottom: 5px;">Name on Card</label>
+                <input type="text"
+                    style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;" />
+
+                <label style="margin-bottom: 5px;">Card Number</label>
+                <input type="text"
+                    style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;" />
+
+                <div style="display: flex; justify-content: space-between">
+                    <div style="flex-basis: 48%;">
+                        <label style="margin-bottom: 5px;">Expiration Date</label>
+                        <input type="text"
+                            style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;" />
+                    </div>
+                    <div style="flex-basis: 48%;" class="flex-column d-inline-flex">
+                        <label style="margin-bottom: 5px;">CVV</label>
+                        <input type="text"
+                            style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;" />
+                    </div>
+                </div>
+
+                <label style="margin-bottom: 5px;">Billing Address</label>
+                <input type="text"
+                    style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;" />
+
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="flex-basis: 48%;">
+                        <label style="margin-bottom: 5px;">City</label>
+                        <input type="text"
+                            style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;" />
+                    </div>
+                    <div style="flex-basis: 48%;">
+                        <label style="margin-bottom: 5px;">State</label>
+                        <input type="text"
+                            style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;" />
+                    </div>
+                </div>
+
+                <label style="margin-bottom: 5px;">Zip Code</label>
+                <input type="text"
+                    style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;" />
+
+
+            </div>
+        </form>
+    </div>
+    <div
+        style="display: flex; width: 400px;height: 200px;margin-top: 50px; border-radius: 20px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); flex-direction: column; justify-content: flex-start; font-weight: bolder;">
+        <div class="align-items-lg-center mt-5 text-capitalize ms-5">
+            <p>total products : {{totalProducts}}</p>
+            <p>Total cost : {{totalCost | currency}}</p>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <button type="submit" class="p-button-raised"
+                style="padding: 10px 20px; background-color: #007bff; border-radius: 5px; border: none; color: #fff;"
+                (click)="addOrder()">Submit
+                Order</button>
+        </div>
+    </div>
+</div>

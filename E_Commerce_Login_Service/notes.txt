@@ -1,0 +1,50 @@
+Users 
+    email
+    pwd
+    name
+    mobile
+    isUserConfirmed
+
+OTP 
+    otp - 4 random digits string
+
+Api 
+    /confirmEmail - frontend
+    /auth/confirmEmail - backend send otp if the email mentioned has isUserConfirmed false
+
+    /login - frontend
+    /auth/login - backend  -- check user&password check isUserConfirmed is true if true send email with otp for login and success 
+                                
+    /register - frontend
+    /auth/register - backend      -- After success send mail with otp for confirmation email and after otp success update isUserConfirmed : true
+
+    for all these actions send emails to the email given in the body
+ 
+** if otp is successfully verified delete that record in otpcollection
+
+How to send otp mail
+
+    install nodemailer
+    
+verifyOtp
+    send otp,id,email,action in body
+    if id and otp (hashed compare ) is true 
+        if action is register check whether isUserConfirmed is true and send error as already verified or else update isUserConfirmed to true and delete that record with id
+        if action is login delete that record with id
+
+sendActionsToEmail
+    Login Success        login attempt (email , date and time and ip)
+    Login Failed
+    Registartion Success 
+    Registartion Failed
+
+Forgot Password  (frontend)
+    first email for /auth/forgotPassword
+        if success
+            /otp/generateOtp
+                if success
+                    /otp/verifyOtp with fields for body as _id from generateOtp and password
+        for failure
+            send error
+
+TODO - validateMobileNumber

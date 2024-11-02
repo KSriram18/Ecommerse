@@ -1,0 +1,42 @@
+img {
+    box-shadow: 10px 10px 10px;
+}
+
+table th {
+    width: 25%
+}
+
+button {
+    width: 100%;
+}
+
+.container {
+    background-color: transparent;
+    padding: 1%;
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+}
+
+.product-category {
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.nocart {
+    font-family: "Pacifico", cursive;
+    display: flex;
+    justify-content: center;
+    color: gray;
+}
+
+.checkout {
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}

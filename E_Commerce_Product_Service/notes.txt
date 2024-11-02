@@ -1,0 +1,3 @@
+create Index on brand,category
+
+

@@ -1,0 +1,15 @@
+.heading {
+    justify-content: space-between;
+}
+
+.products-search {
+    justify-content: center;
+}
+
+ul {
+    justify-content: start;
+}
+
+i {
+    cursor: pointer;
+}

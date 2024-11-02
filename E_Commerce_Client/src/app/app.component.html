@@ -1,0 +1,67 @@
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+<header class="container-fluid d-flex flex-column p-0 fixed-top bg-light">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" routerLink="/">E-Commerce 🛒</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse heading" id="navbarSupportedContent">
+                <div class="products-search container  d-flex col-8">
+                    <form class="d-flex mt-1" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search Products" aria-label="Search"
+                            [(ngModel)]="searchValue" name="searchValue" (ngSubmit)="goToSearchProducts()">
+                        <button class="btn btn-outline-success" (click)="goToSearchProducts()"
+                            [disabled]="searchValue===''">Search</button>
+                    </form>
+                </div>
+
+                <ul class="navbar-nav mb-2 mb-lg-0 col-4">
+
+                    <div class="d-flex justify-content-between">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" routerLink="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="products">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="contact">Contact</a>
+                        </li>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <i *ngIf="isLoggedIn" class="pi pi-sign-out pe-2 me-2 ms-2"
+                            style="color: #708090;font-size: 1.5rem;top:8px;position: relative;" title="Logout"
+                            (click)="logout()"></i>
+                        <i *ngIf="!isLoggedIn" class="pi pi-sign-in pe-2 me-2 ms-2"
+                            style="color: #708090;font-size: 1.5rem;top:8px;position: relative;" title="Login"
+                            (click)="login()"></i>
+                        <i *ngIf="isLoggedIn" class="pi pi-box pe-2 me-2 ms-2"
+                            style="color: #708090;font-size: 1.5rem;top:8px;position: relative;" title="My Orders"
+                            (click)="goToMyOrders()"></i>
+                        <i class="pi pi-cart-plus mr-4 p-text-secondary" pBadge
+                            style="font-size: 1.8rem;position: relative; top:4px" value={{cartLength}} title="View Cart"
+                            (click)="goToCart()"></i>
+
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="m-0" style="padding-top: 70px;">
+    <div class="container-fluid p-0">
+        <router-outlet></router-outlet>
+    </div>
+    <!-- 
+    <div class="container">
+        <footer>
+            Hii
+        </footer>
+    </div> -->
+
+</div>

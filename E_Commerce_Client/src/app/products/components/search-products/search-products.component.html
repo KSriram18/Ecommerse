@@ -1,0 +1,35 @@
+<app-breadcrumb [items]="menuItems"></app-breadcrumb>
+
+<div class="border-bottom cat">
+    <div class="text-center newCat">
+        <p class="lead mb-2 mt-0 p-2 text-center text-decoration-underline text-capitalize">
+            {{searchValue}}</p>
+    </div>
+    <div>
+        <select [(ngModel)]="sort" class="align-self-end form-select">
+            <option value="" disabled>Sort By Price</option>
+            <option value="high-to-low">Price-high to low</option>
+            <option value="low-to-high">Price-low to high</option>
+        </select>
+    </div>
+</div>
+
+
+<div class="container-fluid categories-view mt-2">
+    <div class="card text-center" style="width: 13rem;" *ngFor="let d of products | sort:sort">
+        <img src="{{d.thumbnail}}" class="card-img-top img-fluid h-50 w-100" alt="{{d.id}}"
+            (click)="goToSpecificProduct(d.id)" style="cursor: pointer;" [title]="d.brand">
+        <div class="card-body pt-4 pb-0 ps-0 pe-0">
+            <p class="card-title text-capitalize text-truncate" title="{{d.title}}">{{d.title}}</p>
+            <span class="fw-bold me-2">{{d.price*(1-(d.discountPercentage/100)) | currency}}</span>
+            <span class="text-muted text-decoration-line-through">{{d.price | currency}}</span>
+            <p-rating [ngModel]="rating(d.rating)" [readonly]=true [stars]="5" [cancel]="false"></p-rating>
+            <a role="button" class="btn btn-light shadow" (click)="addToCart(d)">Add to cart</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="alert-danger alert" *ngIf="errorMessage">
+    {{errorMessage}}
+</div>
