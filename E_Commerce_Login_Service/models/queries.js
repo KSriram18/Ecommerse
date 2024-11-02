@@ -11,6 +11,15 @@ instance.register = async (userObj) => {
     }
 };
 
+instance.addToQueries = async (obj) => {
+    const result = await db.queries.create(obj);
+    if (result) {
+        return result;
+    } else {
+        return null;
+    }
+};
+
 instance.updatePassword = async (obj) => {
     // eslint-disable-next-line max-len
     const result = await db.users.updateOne({ email: obj.email }, { $set: { password: obj.password } });

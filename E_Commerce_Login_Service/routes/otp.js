@@ -6,7 +6,7 @@ const router = express.Router();
 
 const otpSchema = Joi.object({
     email: Joi.string().required(),
-    action: Joi.string().required().valid('register', 'login', 'forgotPassword'),
+    action: Joi.string().required().valid('register', 'login', 'forgotPassword', 'verifyemail'),
 });
 
 router.post('/generateOtp', async (req, res, next) => {

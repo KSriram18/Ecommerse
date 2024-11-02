@@ -21,8 +21,8 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  verifyEmail(email:string) {
-    this.http.post(this.loginServiceUrl + '/verifyemail', email)
+  verifyEmail(email:any) {
+    return this.http.post(this.loginServiceUrl + '/verifyemail', {email})
   }
 
   login(data: any) {

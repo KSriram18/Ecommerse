@@ -25,8 +25,8 @@ export class MyOrdersComponent implements OnInit {
   constructor(private cart: CartService, private confirmationService: ConfirmationService, private messageService: MessageService, private router: Router) { }
 
   ngOnInit() {
-    this.cart.getAllOrders().subscribe(data => { this.orders = data; if (this.orders.length === 0) this.errorMessage = 'You haven\'t placed any orders🥲'; }, () => {
-      this.errorMessage = 'You haven\'t placed any orders🥲';
+    this.cart.getAllOrders().subscribe(data => { this.orders = data; if (this.orders.length === 0) this.errorMessage = 'You haven\'t placed any orders 😥'; }, () => {
+      this.errorMessage = 'You haven\'t placed any orders 😥';
     })
   }
 

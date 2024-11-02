@@ -42,15 +42,33 @@ router.post('/register', async (req, res, next) => {
 
 router.post('/verifyemail', async (req, res, next) => {
     try {
-        const result = await userService.login(req.body);
+        const result = await userService.verifyEmail(req.body);
         if (result) {
-            const token = jwt.sign(req.body.email, process.env.SECRET_KEY);
-            // console.log(token)
             res.status(200).json({
                 data: result,
-                token,
             });
         }
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.get('/users', async (req, res, next) => {
+    try {
+        const result = await userService.getUsers();
+        res.status(200).json({
+            data: result,
+        });
+    } catch (err) {
+        next(err);
+    }
+});
+router.post('/users', async (req, res, next) => {
+    try {
+        const result = await userService.toggleUser(req.body.email, req.body.isUserConfirmed);
+        res.status(200).json({
+            data: result,
+        });
     } catch (err) {
         next(err);
     }

@@ -20,7 +20,7 @@ otpService.generateOtp = async (obj) => {
         throwError('Email is already Confirmed Proceed to Login', 400);
     }
 
-    if (!alreadyConfirmed.isUserConfirmed && obj.action !== 'register') {
+    if (!alreadyConfirmed.isUserConfirmed && obj.action !== 'register' && obj.action !== 'verifyemail') {
         throwError('Email is not confirmed.Please Confirm the email', 400);
     }
 
@@ -58,6 +58,24 @@ otpService.verifyOtp = async (obj, ip) => {
     if (!value) {
         await otpService.sendActions(result.email, 'Invalid OTP', `${result.action} attempt failed for <strong>${result.email}</strong> at ${new Date()} using IP address ${ip}`);
         throwError('OTP is invalid', 400);
+    }
+
+    if (result.action === 'verifyemail') {
+        const alreadyConfirmed = await db.users.findOne({ email: result.email, isUserConfirmed: true });
+
+        if (alreadyConfirmed) {
+            throwError('Email Already Verified. Proceed to login', 400);
+        }
+        const updateIsConfirmed = await db.users.updateOne({ email: result.email }, { $set: { isUserConfirmed: true } });
+
+        if (!updateIsConfirmed) {
+            throwError('Verification Faild Due To Internal Server Error.Please try again', 500);
+        }
+
+        await db.otp.deleteOne({ _id: result._id });
+        await otpService.sendActions(result.email, 'Email verification success', `Mail verification success for <strong>${result.email}</strong> at ${new Date()} using IP address ${ip}`);
+
+        return 'Email Verified Successfully';
     }
 
     if (result.action === 'register') {

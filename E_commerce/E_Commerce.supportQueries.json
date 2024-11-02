@@ -1,0 +1,56 @@
+[{
+  "_id": {
+    "$oid": "65623d63a7d8c365392eae45"
+  },
+  "name": "siva",
+  "email": "mogilicharlasiva@gmail.com",
+  "mobileNumber": {
+    "$numberLong": "8374533241"
+  },
+  "query": "hello",
+  "status": "Resolved",
+  "resolution": "Tq here is your resolution",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65623d7aa7d8c365392eae47"
+  },
+  "name": "Lokesh",
+  "email": "klrb4572@gmail.com",
+  "mobileNumber": {
+    "$numberLong": "8978527113"
+  },
+  "query": "hiii",
+  "status": "Resolved",
+  "resolution": "Ookay",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "656acd4df9fe6c4024c2cf51"
+  },
+  "name": "sriram",
+  "email": "knvsriram2000@gmail.com",
+  "mobileNumber": {
+    "$numberLong": "9472366320"
+  },
+  "query": "product is not delivered",
+  "status": "Resolved",
+  "resolution": "your website is wrong",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "656d0b1fa7120f56d40899c5"
+  },
+  "name": "siva",
+  "email": "nvsriramk@gmail.com",
+  "mobileNumber": {
+    "$numberLong": "9444444000"
+  },
+  "query": "njk'l'",
+  "status": "Pending",
+  "resolution": "",
+  "__v": 0
+}]

@@ -1,0 +1,101 @@
+<div class="container p-4 mt-1">
+    <div class="row">
+        <h5 class="display-5 form-heading text-center">Add Product</h5>
+    </div>
+    <form [formGroup]="addProductForm" (ngSubmit)="addproduct()">
+        <div class="form-group">
+            <label for="title" class="pb-1">Title:</label>
+            <input type="text" formControlName="title" class="form-control" id="title">
+            <div class="text-danger" *ngIf="g().title.invalid && (g().title.dirty || g().title.touched)">
+                <p *ngIf="g().title.errors?.['required']" class="mb-1">Title is required</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="pb-1">Description:</label>
+            <input type="text" formControlName="description" class="form-control" id="description">
+            <div class="text-danger" *ngIf="g().description.invalid && (g().description.dirty || g().description.touched)">
+                <p *ngIf="g().description.errors?.['required']" class="mb-1">Description is required</p>
+            </div>
+        </div>
+        <div class="form-group pt-1">
+            <label for="price" class="pb-1">Price:</label>
+            <input type="text" formControlName="price" class="form-control" id="price">
+            <div class="text-danger"
+                *ngIf="g().price.invalid && (g().price.dirty || g().price.touched)">
+                <p *ngIf="g().price.errors?.['required']" class="mb-1">Price is required</p>
+                <p *ngIf="g().price.errors?.['pattern']" class="mb-1">Price should be digits</p>
+            </div>
+        </div>
+        <div class="form-group pt-1">
+            <label for="discountingPercentage" class="pb-1">discounting Percentage:</label>
+            <input type="text" formControlName="discountingPercentage" class="form-control" id="discountingPercentage">
+            <div class="text-danger"
+                *ngIf="g().discountingPercentage.invalid && (g().discountingPercentage.dirty || g().discountingPercentage.touched)">
+                <p *ngIf="g().discountingPercentage.errors?.['required']" class="mb-1">discounting Percentage is required</p>
+                <p *ngIf="g().discountingPercentage.errors?.['pattern']" class="mb-1">discounting Percentage should be digits</p>
+                <p *ngIf="g().discountingPercentage.errors?.['min']" class="mb-1">Minimum discounting Percentage should be 0</p>
+                <p *ngIf="g().discountingPercentage.errors?.['max']" class="mb-1">Maximum discounting Percentage should be 100</p>
+            </div>
+        </div>
+        <div class="form-group pt-1">
+            <label for="rating" class="pb-1">Rating:</label>
+            <input type="text" formControlName="rating" class="form-control" id="rating">
+            <div class="text-danger"
+                *ngIf="g().rating.invalid && (g().rating.dirty || g().rating.touched)">
+                <p *ngIf="g().rating.errors?.['required']" class="mb-1">Rating is required</p>
+                <p *ngIf="g().rating.errors?.['pattern']" class="mb-1">Rating should be digits</p>
+                <p *ngIf="g().rating.errors?.['min']" class="mb-1">Minimum rating should be zero</p>
+                <p *ngIf="g().rating.errors?.['max']" class="mb-1">Maximum rating should be five</p>
+            </div>
+        </div>
+        <div class="form-group pt-1">
+            <label for="stock" class="pb-1">Stock:</label>
+            <input type="text" formControlName="stock" class="form-control" id="stock">
+            <div class="text-danger"
+                *ngIf="g().stock.invalid && (g().stock.dirty || g().stock.touched)">
+                <p *ngIf="g().stock.errors?.['required']" class="mb-1">Stock is required</p>
+                <p *ngIf="g().stock.errors?.['pattern']" class="mb-1">Stock should be  digits</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="brand" class="pb-1">brand:</label>
+            <input type="text" formControlName="brand" class="form-control" id="brand">
+            <div class="text-danger" *ngIf="g().brand.invalid && (g().brand.dirty || g().brand.touched)">
+                <p *ngIf="g().brand.errors?.['required']" class="mb-1">brand is required</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="category" class="pb-1">category:</label>
+            <input type="text" formControlName="category" class="form-control" id="category">
+            <div class="text-danger" *ngIf="g().category.invalid && (g().category.dirty || g().category.touched)">
+                <p *ngIf="g().category.errors?.['required']" class="mb-1">category is required</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="thumbnail" class="pb-1">thumbnail:</label>
+            <input type="text" formControlName="thumbnail" class="form-control" id="thumbnail">
+            <div class="text-danger" *ngIf="g().thumbnail.invalid && (g().thumbnail.dirty || g().thumbnail.touched)">
+                <p *ngIf="g().thumbnail.errors?.['required']" class="mb-1">thumbnail is required</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="images" class="pb-1">images:</label>
+            <input type="text" formControlName="images" class="form-control" id="images">
+            <div class="text-danger" *ngIf="g().images.invalid && (g().images.dirty || g().images.touched)">
+                <p *ngIf="g().images.errors?.['required']" class="mb-1">images is required</p>
+                <p *ngIf="g().images.errors?.['maxlength']" class="mb-1">images cannot be greater than 20 characters</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="pngIcon" class="pb-1">pngIcon:</label>
+            <input type="text" formControlName="pngIcon" class="form-control" id="pngIcon">
+            <div class="text-danger" *ngIf="g().pngIcon.invalid && (g().pngIcon.dirty || g().pngIcon.touched)">
+                <p *ngIf="g().pngIcon.errors?.['required']" class="mb-1">pngIcon is required</p>
+            </div>
+        </div>
+        <div class="button d-flex mt-2" style="justify-content: center;">
+            <button type="submit" class="btn btn-primary mt-2 customBtn"
+                [disabled]="addProductForm.invalid || disableSubmit">Add Product</button>
+        </div>
+    </form>
+</div>

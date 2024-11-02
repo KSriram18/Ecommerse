@@ -12,7 +12,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class VerifyEmailComponent implements OnInit{
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required]
   })
 
   uId: any;
@@ -20,7 +19,7 @@ export class VerifyEmailComponent implements OnInit{
   disableSubmit = false;
 
   menuItems: MenuItem[] = [
-    { label: 'Login', routerLink: '/user' }
+    { label: 'Verify Email', routerLink: '/user' }
   ];
 
   returnUrl !: string;
@@ -37,20 +36,19 @@ export class VerifyEmailComponent implements OnInit{
   }
 
   login() {
-    const email = this.loginForm.value['email'];
+    const email = this.loginForm.controls.email.value;
     this.disableSubmit = true;
-    this.service.login(this.loginForm.value).subscribe((data1: any) => {
+    this.service.verifyEmail(email).subscribe((data1: any) => {
       this.loginForm.reset();
       // console.log(data1)
       if (data1.data) {
-        this.showSuccess('Authentication Success', 1000);
-        this.service.generateOtp({ email: email, action: 'login' }).subscribe((data: any) => {
+        this.service.generateOtp({ email: email, action: 'verifyemail' }).subscribe((data: any) => {
           this.showSuccess('OTP Generated', 500);
           this.loginForm.reset()
           this.service.uid = data.data.id;
-          this.service.action = 'login';
+          this.service.action = 'verifyemail';
           // localStorage.setItem('token', data1.token)
-          this.service.token = data1.token;
+          // this.service.token = data1.token;
           this.showSuccess(data.message, 1500);
           // console.log(this.returnUrl)
           setTimeout(() => {
@@ -60,6 +58,11 @@ export class VerifyEmailComponent implements OnInit{
           this.showError(err.error.message)
           this.disableSubmit = false;
           this.loginForm.reset()
+          if(err.status === 400){
+            setTimeout(() => {
+              this.router.navigate(['user/',], { queryParams: { returnUrl: this.returnUrl } })
+            }, 500);
+          }
         })
 
       }
@@ -69,16 +72,6 @@ export class VerifyEmailComponent implements OnInit{
       this.loginForm.reset()
       this.service.loggedIn = false;
       this.disableSubmit = false;
-      if(err.status === 404){
-        setTimeout(() => {
-          this.router.navigate(['user/register',], { queryParams: { returnUrl: this.returnUrl } })
-        }, 500);
-      }
-      if(err.status === 402){
-        setTimeout(() => {
-          this.router.navigate(['user/verifyemail',], { queryParams: { returnUrl: this.returnUrl } })
-        }, 500);
-      }
     }
     )
   }

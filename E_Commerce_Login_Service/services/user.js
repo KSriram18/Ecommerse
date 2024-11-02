@@ -53,4 +53,51 @@ userService.forgotPassword = async (obj) => {
     return true;
 };
 
+userService.verifyEmail = async (obj) => {
+    const result = await db.users.findOne({ email: obj.email });
+    if (!result) {
+        throwError('Email is Invalid', 400);
+    }
+    if (result.isUserConfirmed) {
+        throwError('Email is already verified');
+    }
+    return true;
+};
+
+userService.addToCustomerQueries = async (obj) => {
+    const created = await model.addToQueries(obj);
+    if (created) {
+        return created;
+    } else {
+        throwError('Internal server error while saving the query. Please try again', 500);
+    }
+};
+userService.getCustomerQueries = async (obj) => {
+    const result = await db.queries.find();
+    if (result) {
+        return result;
+    } else {
+        throwError('Internal server error while saving the query. Please try again', 500);
+    }
+};
+userService.getUsers = async () => {
+    const result = await db.users.find({});
+    if (result) {
+        return result;
+    } else {
+        throwError('Internal server error while saving the query. Please try again', 500);
+    }
+};
+userService.toggleUser = async (email, isUserConfirmed) => {
+    const toggle = await db.users.findOne({ email });
+    console.log(toggle);
+    // eslint-disable-next-line max-len
+    const result = db.users.updateOne({ email }, { $set: { isUserConfirmed: !toggle.isUserConfirmed } });
+    if (result) {
+        return result;
+    } else {
+        throwError('Internal server error while saving the query. Please try again', 500);
+    }
+};
+
 module.exports = userService;

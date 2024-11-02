@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+}
+
+th,
+tr,
+td {
+    text-align: center;
+}
+
+/* tr:nth-child(odd) {
+    background-color: whitesmoke;
+}
+
+tr:nth-child(even) {
+    background-color: grey;
+} */
+
+.queries-table {
+    margin: 0 auto;
+    width: 75%;
+}

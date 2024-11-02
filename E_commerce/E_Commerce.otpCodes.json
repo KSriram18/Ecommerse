@@ -1,0 +1,9 @@
+[{
+  "_id": {
+    "$oid": "65340db8989a182c3db1efc8"
+  },
+  "otp": "$2a$10$0aTwpVujM1r80z0fgeLvwuKxyrPFXhlghWnupAgL6U4WzDmGTobWG",
+  "email": "klrb4572@gmail.com",
+  "action": "register",
+  "__v": 0
+}]

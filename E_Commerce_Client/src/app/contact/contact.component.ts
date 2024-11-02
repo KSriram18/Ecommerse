@@ -30,43 +30,17 @@ export class ContactComponent {
     return this.contactForm.controls;
   }
 
-
-  // register() {
-  //   const email = this.registrationForm.value['email'];
-  //   this.disableSubmit = true;
-  //   this.service.register(this.registrationForm.value).subscribe((data: any) => {
-  //     this.registrationForm.reset();
-  //     if (data.data) {
-  //       this.showSuccess('Registration Success Please Verify Mail', 1000);
-  //       this.service.generateOtp({ email: email, action: 'register' }).subscribe((data: any) => {
-  //         this.showSuccess('OTP Generated', 500);
-  //         this.registrationForm.reset()
-  //         this.service.uid = data.data.id;
-  //         this.showSuccess(data.message, 1500);
-  //         setTimeout(() => {
-  //           this.router.navigate(['user/verifyOtp'])
-  //         }, 1500);
-  //       }, (err: any) => {
-  //         this.showError(err.error.message)
-  //         this.disableSubmit = false;
-  //         this.registrationForm.reset()
-  //       })
-
-  //     }
-  //   }, (err: any) => {
-  //     this.showError(err.error.message)
-  //     this.registrationForm.reset()
-  //     this.disableSubmit = false;
-  //   }
-  //   )
-  // }
   contact(){
+    this.disableSubmit=true;
     this.service.sendQuery(this.contactForm.value).subscribe((data:any)=> {
       this.messageService.add({ severity: 'success', summary: 'Success', detail: data.data, life: 1500 });
       setTimeout(()=>this.router.navigateByUrl('/'),1500)
       this.contactForm.reset()
     },
-    (error)=>this.showError(error))
+    (error)=>{
+      this.showError(error);
+      this.disableSubmit=false;
+    })
   }
 
   showError(message: string) {

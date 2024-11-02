@@ -1,0 +1,28 @@
+<ng-container>
+    <div class="container p-4 mt-auto">
+        <div class="row">
+            <h5 class="display-5 form-heading">Admin Login</h5>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="adminLogin()">
+            <div class="form-group">
+                <label for="email" class="pb-1">Email:</label>
+                <input type="text" formControlName="email" class="form-control" id="email">
+                <div class="text-danger" *ngIf="g().email.invalid && (g().email.dirty || g().email.touched)">
+                    <p *ngIf="g().email.errors?.['required']" class="mb-1">Email is required</p>
+                    <p *ngIf="g().email.errors?.['email']" class="mb-1">Please enter correct email format</p>
+                </div>
+            </div>
+            <div class="form-group pt-1">
+                <label for="password" class="pb-1">Password:</label>
+                <input type="password" formControlName="password" class="form-control" id="password">
+                <div class="text-danger" *ngIf="g().password.invalid && (g().password.dirty || g().password.touched)">
+                    <p *ngIf="g().password.errors?.['required']" class="mb-1">Password is required</p>
+                </div>
+            </div>
+            <div class="button d-flex" style="justify-content: center;">
+                <button type="submit" class="btn btn-primary mt-2"
+                    [disabled]="loginForm.invalid || disableSubmit">Login</button>
+            </div>
+        </form>
+    </div>
+</ng-container>

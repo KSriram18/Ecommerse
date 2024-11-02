@@ -1,0 +1,26 @@
+[{
+  "_id": {
+    "$oid": "6507381e2d1f4ea8fc5418d2"
+  },
+  "email": "mogilicharlasiva@gmail.com",
+  "password": "$2a$10$dPDmFFfWwToZnvhI5eMe1.g9Hr.PRY.1Yarg6w3HDIwVhemJKkbmi",
+  "name": "siva",
+  "mobileNumber": {
+    "$numberLong": "8374533241"
+  },
+  "isUserConfirmed": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65340db8989a182c3db1efc5"
+  },
+  "email": "klrb4572@gmail.com",
+  "password": "$2a$10$PGQau/YFOrGzHWdqOIQIK.L/WjfUD0FTd1FVzV2HWLSIUoT.ZuAIS",
+  "name": "Lokesh",
+  "mobileNumber": {
+    "$numberLong": "8978527113"
+  },
+  "isUserConfirmed": true,
+  "__v": 0
+}]

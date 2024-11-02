@@ -1,0 +1,56 @@
+<div class="queries-table">
+    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="mobileNumber">
+            <th mat-header-cell *matHeaderCellDef> Mobile Number </th>
+            <td mat-cell *matCellDef="let element"> {{element.mobileNumber}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="query">
+            <th mat-header-cell *matHeaderCellDef> Query </th>
+            <td mat-cell *matCellDef="let element"> {{element.query}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element">
+                <p [ngClass]="{'redColor': element.status ==='Pending','greenColor': element.status!=='Pending'}">
+                    {{element.status}}</p>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="resolution">
+            <th mat-header-cell *matHeaderCellDef> Resolution </th>
+            <td mat-cell *matCellDef="let element" [ngClass]="{'d-flex': element.status === 'Pending'}">
+                <ng-container *ngIf="element.status === 'Pending'">
+                    <textarea cols="10" rows="2" class="form-control m-2" #resolutionReference></textarea>
+                    <button *ngIf="element.status === 'Pending'" type="button" class="btn btn-outline-secondary m-2"
+                        (click)="sendResolution(element._id,resolutionReference.value,element.email)"> Send
+                        Resolution </button>
+                </ng-container>
+                <p *ngIf="element.status !== 'Pending'">{{element.resolution}}</p>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+</div>
